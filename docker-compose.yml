@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  torrserver:
+    image: ghcr.io/yourok/torrserver:latest
+    container_name: torrserver
+    #ports:
+    #  - "5665:5665"
+    environment:
+      - TS_PORT=5665
+      - TS_DONTKILL=1
+      - TS_HTTPAUTH=1
+      - TS_RDB=1
+      - TS_CONF_PATH=/opt/ts/config
+      - TS_LOG_PATH=/opt/ts/log
+      - TS_TORR_DIR=/opt/ts/torrents
+    volumes:
+      - ~/ts:/opt/ts
+    networks:
+      private_network:
+        ipv4_address: 10.2.0.4
